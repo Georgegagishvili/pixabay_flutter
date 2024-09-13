@@ -1,0 +1,8 @@
+import 'package:get_it/get_it.dart';
+
+final GetIt locator = GetIt.instance;
+
+void setupServiceLocator(){
+  // locator.registerLazySingleton();
+  // locator.registerFactory<SomeBloc>(() => SomeBloc());
+}
