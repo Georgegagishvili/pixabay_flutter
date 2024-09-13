@@ -13,10 +13,10 @@ class AppTheme {
       scaffoldBackgroundColor: white,
       brightness: Brightness.light,
       fontFamily: _fontLato,
-      extensions: [lightColors],
+      extensions: [darkColors],
       colorScheme: const ColorScheme.light(),
-      progressIndicatorTheme: const ProgressIndicatorThemeData(
-        color: pearlBlue,
+      progressIndicatorTheme: ProgressIndicatorThemeData(
+        color: darkColors.inversePrimary,
       ),
       useMaterial3: true,
       visualDensity: VisualDensity.adaptivePlatformDensity,
@@ -46,7 +46,7 @@ class AppTheme {
       fontFamily: _fontLato,
       brightness: Brightness.dark,
       colorScheme: const ColorScheme.dark(),
-      extensions: [lightColors],
+      extensions: [darkColors],
       progressIndicatorTheme: const ProgressIndicatorThemeData(
         color: pearlBlue,
       ),

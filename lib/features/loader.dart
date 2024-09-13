@@ -72,7 +72,7 @@ class LoadingPageState extends State<LoadingPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: context.theme.background,
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -80,10 +80,16 @@ class LoadingPageState extends State<LoadingPage> {
             duration: const Duration(milliseconds: 400),
             opacity: _logoOpacityLevel,
             child: Align(
-              child: Image.network(
-                'https://i.imgur.com/IWvwaJz.png',
-                width: 196,
-                fit: BoxFit.cover,
+              child: ColorFiltered(
+                colorFilter: ColorFilter.mode(
+                  context.theme.primary,
+                  BlendMode.srcIn,
+                ),
+                child: Image.network(
+                  'https://i.imgur.com/IWvwaJz.png',
+                  width: 196,
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
           ),
@@ -91,8 +97,8 @@ class LoadingPageState extends State<LoadingPage> {
             width: 200,
             height: 4,
             child: LinearProgressIndicator(
-              backgroundColor: context.theme.black,
-              color: Colors.blue,
+              backgroundColor: context.theme.surfaceVariant,
+              color: context.theme.primary,
               borderRadius: BorderRadius.circular(100),
             ),
           ),
