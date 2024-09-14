@@ -3,9 +3,12 @@ export 'package:mvvm/src/util/config/constants.dart';
 export 'package:mvvm/src/util/config/preferences.dart';
 export 'package:mvvm/src/util/config/route_animations.dart';
 
+export 'package:mvvm/src/util/extensions/map.dart';
 export 'package:mvvm/src/util/extensions/navigation.dart';
 export 'package:mvvm/src/util/extensions/string.dart';
 export 'package:mvvm/src/util/extensions/theme.dart';
+
+export 'package:mvvm/src/util/helpers/user_hive.dart';
 
 export 'package:mvvm/src/util/http/api_resource.dart';
 export 'package:mvvm/src/util/http/http_client.dart';

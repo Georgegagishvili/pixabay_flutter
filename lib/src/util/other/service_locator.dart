@@ -5,6 +5,8 @@ import 'package:mvvm/src/util/exports.dart';
 final GetIt locator = GetIt.instance;
 
 void setupServiceLocator() {
+  locator.registerLazySingleton<UserHive>(() => UserHive());
+
   locator.registerLazySingleton<LoginRepository>(
     () => LoginRepositoryImpl(client: HttpService.instance),
   );

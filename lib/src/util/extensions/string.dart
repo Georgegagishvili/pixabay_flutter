@@ -5,7 +5,7 @@ extension StringFormattingExtension on String {
       RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(this);
 }
 
-extension JWTExtension on String {
+extension JWTParser on String {
   Map<String, dynamic>? get parseJWT {
     try {
       final String normalizedSource = base64Url.normalize(split('.')[1]);

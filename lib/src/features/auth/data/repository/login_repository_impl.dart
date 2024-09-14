@@ -11,17 +11,16 @@ class LoginRepositoryImpl implements LoginRepository {
   Future<ApiResource<String>> login(LoginPayload credentials) async {
     await Future.delayed(const Duration(seconds: 2));
 
-    final currentUserTokens = RegisteredUsers.users;
-    final exists = currentUserTokens.any((String token) {
-      final User user = User.fromJson(token.parseJWT!);
-      return user.email == credentials.username;
-    });
+    final areCredentialsValid = locator<UserHive>().areCredentialsValid(
+      credentials,
+    );
 
-    if (!exists) {
-      return ApiResource.error(CustomExceptions.USER_NOT_FOUND);
+    if (!areCredentialsValid) {
+      return ApiResource.error(CustomExceptions.INVALID_CREDENTIALS);
     }
 
-    /// ToDo. get user from DB as token
-    return ApiResource.success('data');
+    final User user = locator<UserHive>().getUser(credentials.username!)!;
+
+    return ApiResource.success(user.toJson().toJWT);
   }
 }
