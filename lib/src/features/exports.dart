@@ -10,3 +10,6 @@ export 'package:mvvm/src/features/auth/domain/repository/login_repository.dart';
 export 'package:mvvm/src/features/auth/presentation/blocs/login_cubit.dart';
 
 export 'package:mvvm/src/features/auth/presentation/pages/login_page.dart';
+
+export 'package:mvvm/src/features/home/presentation/pages/home_page.dart';
+

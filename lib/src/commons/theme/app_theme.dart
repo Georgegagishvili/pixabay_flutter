@@ -4,10 +4,6 @@ import 'package:mvvm/src/commons/exports.dart';
 class AppTheme {
   static const _fontLato = 'Lato';
 
-  static const white = Color.fromRGBO(255, 255, 255, 1);
-  static const smokyBlack = Color.fromRGBO(16, 16, 16, 1);
-  static const pearlBlue = Color.fromRGBO(202, 218, 255, 1);
-
   static ThemeData appLightTheme(CustomColors colors) {
     return ThemeData(
       scaffoldBackgroundColor: colors.background,

@@ -9,7 +9,7 @@ class LoginRepositoryImpl implements LoginRepository {
 
   @override
   Future<ApiResource<String>> login(LoginPayload credentials) async {
-    await Future.delayed(const Duration(seconds: 2));
+    await Future.delayed(const Duration(milliseconds: 1200));
 
     final areCredentialsValid = locator<UserHive>().areCredentialsValid(
       credentials,

@@ -125,30 +125,30 @@ class _LoginPageState extends State<LoginPage> {
     if (_formKey.currentState!.validate()) {
       final email = _emailController.text;
       final password = _passwordController.text;
+      final payload = LoginPayload(
+        username: email,
+        password: password,
+      );
 
-      /// ToDo
       final ApiResource<String> loginResult =
-          await context.read<LoginCubit>().login(
-                LoginPayload(
-                  username: email,
-                  password: password,
-                ),
-              );
+          await context.read<LoginCubit>().login(payload);
 
       if (!mounted) return;
-      if (loginResult.message == CustomExceptions.USER_NOT_FOUND) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: const Text('User not found'),
-            backgroundColor: context.theme.error,
-          ),
-        );
+      if (loginResult.message == CustomExceptions.INVALID_CREDENTIALS) {
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: const Text('User not found'),
+          backgroundColor: context.theme.error,
+        ));
       }
       if (loginResult.data == null) return;
 
       Preferences.instance.setString(
         PreferenceKeys.USER_TOKEN,
         loginResult.data,
+      );
+
+      context.push(
+        const HomePage(),
       );
     }
   }

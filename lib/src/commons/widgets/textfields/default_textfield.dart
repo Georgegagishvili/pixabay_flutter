@@ -2,55 +2,28 @@ import 'package:flutter/material.dart';
 import 'package:mvvm/src/commons/exports.dart';
 import 'package:mvvm/src/util/exports.dart';
 
-class DefaultTextField extends StatelessWidget {
-  const DefaultTextField({
-    this.controller,
-    this.label,
-    this.hint,
-    this.onChanged,
-    this.onSubmitted,
-    this.textInputAction,
-    this.obscureText = false,
-    this.autofocus = false,
-    this.maxLength,
-    this.keyboardType,
-    this.focusNode,
-    this.validator,
-    super.key,
-  });
-
-  final TextEditingController? controller;
-  final String? label;
-  final String? hint;
-  final ValueChanged<String>? onChanged;
-  final ValueChanged<String>? onSubmitted;
-  final TextInputAction? textInputAction;
-  final bool obscureText;
-  final bool autofocus;
-  final int? maxLength;
-  final TextInputType? keyboardType;
-  final FocusNode? focusNode;
-  final String? Function(String?)? validator;
+class _DefaultTextFieldState extends State<DefaultTextField> {
+  late bool _obscureText = widget.obscureText;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      controller: controller,
-      focusNode: focusNode,
-      keyboardType: keyboardType,
-      textInputAction: textInputAction,
+      controller: widget.controller,
+      focusNode: widget.focusNode,
+      keyboardType: widget.keyboardType,
+      textInputAction: widget.textInputAction,
       cursorColor: context.theme.primary,
-      validator: validator,
-      obscureText: obscureText,
-      autofocus: autofocus,
-      maxLength: maxLength,
-      onChanged: onChanged,
+      validator: widget.validator,
+      obscureText: _obscureText,
+      autofocus: widget.autofocus,
+      maxLength: widget.maxLength,
+      onChanged: widget.onChanged,
       style: AppTextStyles.fourteenW500.copyWith(
         color: context.theme.inverseSurface,
       ),
       decoration: InputDecoration(
-        labelText: label,
-        hintText: hint,
+        labelText: widget.label,
+        hintText: widget.hint,
         filled: true,
         counterText: '',
         fillColor: context.theme.surfaceVariant,
@@ -96,7 +69,53 @@ class DefaultTextField extends StatelessWidget {
           horizontal: 8,
           vertical: 14,
         ),
+        suffixIcon: widget.obscureText
+            ? IconButton(
+                icon: Icon(
+                  Icons.visibility,
+                  color: context.theme.onSurfaceVariant,
+                ),
+                onPressed: () {
+                  _obscureText = !_obscureText;
+                  setState(() {});
+                },
+              )
+            : null,
       ),
     );
   }
+}
+
+class DefaultTextField extends StatefulWidget {
+  const DefaultTextField({
+    this.controller,
+    this.label,
+    this.hint,
+    this.onChanged,
+    this.onSubmitted,
+    this.textInputAction,
+    this.obscureText = false,
+    this.autofocus = false,
+    this.maxLength,
+    this.keyboardType,
+    this.focusNode,
+    this.validator,
+    super.key,
+  });
+
+  final TextEditingController? controller;
+  final String? label;
+  final String? hint;
+  final ValueChanged<String>? onChanged;
+  final ValueChanged<String>? onSubmitted;
+  final TextInputAction? textInputAction;
+  final bool obscureText;
+  final bool autofocus;
+  final int? maxLength;
+  final TextInputType? keyboardType;
+  final FocusNode? focusNode;
+  final String? Function(String?)? validator;
+
+  @override
+  State<DefaultTextField> createState() => _DefaultTextFieldState();
 }
