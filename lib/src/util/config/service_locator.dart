@@ -13,4 +13,10 @@ void setupServiceLocator() {
   locator.registerFactory(
     () => LoginCubit(loginRepository: locator<LoginRepository>()),
   );
+  locator.registerLazySingleton<RegisterRepository>(
+    () => RegisterRepositoryImpl(client: HttpService.instance),
+  );
+  locator.registerFactory(
+    () => RegisterCubit(registerRepository: locator<RegisterRepository>()),
+  );
 }

@@ -4,6 +4,52 @@ import 'package:mvvm/src/commons/exports.dart';
 class AppTheme {
   static const _fontLato = 'Lato';
 
+  static InputDecorationTheme _inputDecorationTheme(CustomColors colors) {
+    return InputDecorationTheme(
+      enabledBorder: OutlineInputBorder(
+        borderSide: BorderSide(
+          color: colors.inversePrimary,
+        ),
+        borderRadius: BorderRadius.circular(4),
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderSide: BorderSide(
+          color: colors.primary,
+        ),
+        borderRadius: BorderRadius.circular(4),
+      ),
+      border: OutlineInputBorder(
+        borderSide: BorderSide(
+          color: colors.inversePrimary,
+        ),
+        borderRadius: BorderRadius.circular(4),
+      ),
+      focusedErrorBorder: OutlineInputBorder(
+        borderSide: BorderSide(
+          color: colors.error,
+        ),
+        borderRadius: BorderRadius.circular(4),
+      ),
+      errorBorder: OutlineInputBorder(
+        borderSide: BorderSide(
+          color: colors.error,
+        ),
+        borderRadius: BorderRadius.circular(4),
+      ),
+      fillColor: colors.surfaceVariant,
+      hintStyle: AppTextStyles.fourteenW500.copyWith(
+        color: colors.onSurfaceVariant,
+      ),
+      floatingLabelStyle: AppTextStyles.fourteenW500.copyWith(
+        color: colors.primary,
+      ),
+      labelStyle: TextStyle(
+        color: colors.onSurfaceVariant,
+      ),
+      filled: true,
+    );
+  }
+
   static ThemeData appLightTheme(CustomColors colors) {
     return ThemeData(
       scaffoldBackgroundColor: colors.background,
@@ -44,22 +90,11 @@ class AppTheme {
       ),
       useMaterial3: true,
       visualDensity: VisualDensity.adaptivePlatformDensity,
-      appBarTheme: const AppBarTheme(
+      appBarTheme: AppBarTheme(
         elevation: 0,
-        scrolledUnderElevation: 0,
-        surfaceTintColor: Colors.transparent,
-        shadowColor: Colors.transparent,
+        backgroundColor: colors.background,
       ),
-      inputDecorationTheme: const InputDecorationTheme(
-        isDense: true,
-        border: InputBorder.none,
-        focusedErrorBorder: InputBorder.none,
-        focusedBorder: InputBorder.none,
-        errorBorder: InputBorder.none,
-        enabledBorder: InputBorder.none,
-        disabledBorder: InputBorder.none,
-        contentPadding: EdgeInsets.zero,
-      ),
+      inputDecorationTheme: _inputDecorationTheme(colors),
     );
   }
 
@@ -104,22 +139,11 @@ class AppTheme {
       ),
       useMaterial3: true,
       visualDensity: VisualDensity.adaptivePlatformDensity,
-      appBarTheme: const AppBarTheme(
+      appBarTheme: AppBarTheme(
         elevation: 0,
-        scrolledUnderElevation: 0,
-        surfaceTintColor: Colors.transparent,
-        shadowColor: Colors.transparent,
+        backgroundColor: colors.background,
       ),
-      inputDecorationTheme: const InputDecorationTheme(
-        isDense: true,
-        border: InputBorder.none,
-        focusedErrorBorder: InputBorder.none,
-        focusedBorder: InputBorder.none,
-        errorBorder: InputBorder.none,
-        enabledBorder: InputBorder.none,
-        disabledBorder: InputBorder.none,
-        contentPadding: EdgeInsets.zero,
-      ),
+      inputDecorationTheme: _inputDecorationTheme(colors),
     );
   }
 }

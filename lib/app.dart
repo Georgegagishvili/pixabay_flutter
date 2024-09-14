@@ -14,6 +14,9 @@ class MyApp extends StatelessWidget {
         BlocProvider<LoginCubit>(
           create: (_) => LoginCubit(loginRepository: locator<LoginRepository>()),
         ),
+        BlocProvider<RegisterCubit>(
+          create: (_) => RegisterCubit(registerRepository: locator<RegisterRepository>()),
+        ),
       ],
       child: MaterialApp(
         title: 'Flutter Assignment',

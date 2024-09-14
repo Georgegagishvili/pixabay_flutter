@@ -4,7 +4,7 @@ import 'package:mvvm/src/commons/exports.dart';
 import 'package:mvvm/src/features/exports.dart';
 import 'package:mvvm/src/util/exports.dart';
 
-class _LoginPageState extends State<LoginPage> {
+class _LoginPageState extends State<LoginPage> with Validator {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
@@ -43,19 +43,15 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ),
               const Spacer(flex: 2),
-              const Text(
-                'Sign In',
-                style: AppTextStyles.twentyEightW700,
-              ),
-              Text(
-                'Welcome back, enter your credentials to continue',
-                style: AppTextStyles.fourteenW400.copyWith(),
+              const TitleText(
+                title: 'Sign In',
+                text: 'Welcome back, enter your credentials to continue',
               ),
               const SizedBox(height: 26),
               DefaultTextField(
                 label: 'Email',
                 hint: 'Enter your email',
-                validator: _validateEmail,
+                validator: validateEmail,
                 autofocus: true,
                 // onChanged: _resetValidators,
                 textInputAction: TextInputAction.next,
@@ -66,7 +62,7 @@ class _LoginPageState extends State<LoginPage> {
                 label: 'Password',
                 hint: 'Enter your password',
                 obscureText: true,
-                validator: _validatePassword,
+                validator: validatePassword,
                 maxLength: 12,
                 controller: _passwordController,
               ),
@@ -74,7 +70,7 @@ class _LoginPageState extends State<LoginPage> {
               Align(
                 alignment: Alignment.centerRight,
                 child: TextButton(
-                  onPressed: () {},
+                  onPressed: _onCreateAccount,
                   child: const Text(
                     'Create an account',
                     style: AppTextStyles.fourteenW400,
@@ -100,25 +96,8 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  String? _validateEmail(String? value) {
-    if (value!.isEmpty) {
-      return 'Email is required';
-    }
-    if (!value.isEmail) {
-      return 'Invalid email';
-    }
-    return null;
-  }
-
-  String? _validatePassword(String? value) {
-    if (value!.isEmpty) {
-      return 'Password is required';
-    }
-    final length = value.length;
-    if (length < 6) {
-      return 'Password must be at least 6 characters';
-    }
-    return null;
+  void _onCreateAccount() {
+    context.push(const SignUpPage());
   }
 
   Future<void> _onContinue() async {
@@ -135,17 +114,12 @@ class _LoginPageState extends State<LoginPage> {
 
       if (!mounted) return;
       if (loginResult.message == CustomExceptions.INVALID_CREDENTIALS) {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: const Text('User not found'),
-          backgroundColor: context.theme.error,
-        ));
+        context.showSnackBar(
+          'User not found',
+          isError: true,
+        );
       }
       if (loginResult.data == null) return;
-
-      Preferences.instance.setString(
-        PreferenceKeys.USER_TOKEN,
-        loginResult.data,
-      );
 
       context.push(
         const HomePage(),

@@ -4,6 +4,9 @@ import 'package:mvvm/src/util/exports.dart';
 extension JWTExtension on Map {
   String get toJWT {
     final jwt = JWT(this);
-    return jwt.sign(SecretKey(Constants.JWT_SECRET));
+    return jwt.sign(
+      SecretKey(Constants.JWT_SECRET),
+      expiresIn: const Duration(days: 3),
+    );
   }
 }

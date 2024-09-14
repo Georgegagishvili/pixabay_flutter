@@ -18,43 +18,45 @@ class DefaultButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: enabled && !loading ? onTap : null,
-      borderRadius: BorderRadius.circular(4),
-      child: Ink(
-        padding: const EdgeInsets.all(12),
-        width: double.infinity,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(4),
-          color: context.theme.primary.withOpacity(
-            enabled && !loading ? 1 : 0.5,
-          ),
-        ),
-        child: AnimatedCrossFade(
-          duration: const Duration(milliseconds: 300),
-          alignment: Alignment.center,
-          firstChild: Align(
-            child: Text(
-              label!,
-              textAlign: TextAlign.center,
-              style: AppTextStyles.sixteenW500.copyWith(
-                color: context.theme.onPrimary,
-              ),
+    return Material(
+      child: InkWell(
+        onTap: enabled && !loading ? onTap : null,
+        borderRadius: BorderRadius.circular(4),
+        child: Ink(
+          padding: const EdgeInsets.all(12),
+          width: double.infinity,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(4),
+            color: context.theme.primary.withOpacity(
+              enabled && !loading ? 1 : 0.5,
             ),
           ),
-          secondChild: Align(
-            child: Container(
-              height: 23,
-              width: 23,
-              alignment: Alignment.center,
-              padding: const EdgeInsets.all(3),
-              child: const CircularProgressIndicator(
-                strokeWidth: 1.5,
+          child: AnimatedCrossFade(
+            duration: const Duration(milliseconds: 300),
+            alignment: Alignment.center,
+            firstChild: Align(
+              child: Text(
+                label!,
+                textAlign: TextAlign.center,
+                style: AppTextStyles.sixteenW500.copyWith(
+                  color: context.theme.onPrimary,
+                ),
               ),
             ),
+            secondChild: Align(
+              child: Container(
+                height: 23,
+                width: 23,
+                alignment: Alignment.center,
+                padding: const EdgeInsets.all(3),
+                child: const CircularProgressIndicator(
+                  strokeWidth: 1.5,
+                ),
+              ),
+            ),
+            crossFadeState:
+                loading ? CrossFadeState.showSecond : CrossFadeState.showFirst,
           ),
-          crossFadeState:
-              loading ? CrossFadeState.showSecond : CrossFadeState.showFirst,
         ),
       ),
     );

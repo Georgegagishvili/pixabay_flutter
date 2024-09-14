@@ -13,6 +13,21 @@ class LoginCubit extends Cubit<ApiResource<String>> {
         await loginRepository.login(payload);
     emit(loginResult);
 
+    if (loginResult.data != null) {
+      Preferences.instance.setString(
+        PreferenceKeys.USER_TOKEN,
+        loginResult.data,
+      );
+    }
+
     return loginResult;
+  }
+
+  void setUserToken(String token) {
+    emit(ApiResource.success(token));
+  }
+
+  Future<void> logout() async {
+    Preferences.instance.removeKey(PreferenceKeys.USER_TOKEN);
   }
 }

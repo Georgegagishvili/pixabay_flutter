@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:mvvm/src/commons/exports.dart';
 import 'package:mvvm/src/util/exports.dart';
 
@@ -18,53 +19,14 @@ class _DefaultTextFieldState extends State<DefaultTextField> {
       autofocus: widget.autofocus,
       maxLength: widget.maxLength,
       onChanged: widget.onChanged,
+      inputFormatters: widget.inputFormatters,
       style: AppTextStyles.fourteenW500.copyWith(
         color: context.theme.inverseSurface,
       ),
       decoration: InputDecoration(
         labelText: widget.label,
         hintText: widget.hint,
-        filled: true,
         counterText: '',
-        fillColor: context.theme.surfaceVariant,
-        hintStyle: AppTextStyles.fourteenW500
-            .copyWith(color: context.theme.onSurfaceVariant),
-        floatingLabelStyle: AppTextStyles.fourteenW500.copyWith(
-          color: context.theme.primary,
-        ),
-        labelStyle: TextStyle(
-          color: context.theme.onSurfaceVariant,
-        ),
-        enabledBorder: OutlineInputBorder(
-          borderSide: BorderSide(
-            color: context.theme.inversePrimary,
-          ),
-          borderRadius: BorderRadius.circular(4),
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(
-            color: context.theme.primary,
-          ),
-          borderRadius: BorderRadius.circular(4),
-        ),
-        border: OutlineInputBorder(
-          borderSide: BorderSide(
-            color: context.theme.inversePrimary,
-          ),
-          borderRadius: BorderRadius.circular(4),
-        ),
-        focusedErrorBorder: OutlineInputBorder(
-          borderSide: BorderSide(
-            color: context.theme.error,
-          ),
-          borderRadius: BorderRadius.circular(4),
-        ),
-        errorBorder: OutlineInputBorder(
-          borderSide: BorderSide(
-            color: context.theme.error,
-          ),
-          borderRadius: BorderRadius.circular(4),
-        ),
         contentPadding: const EdgeInsets.symmetric(
           horizontal: 8,
           vertical: 14,
@@ -100,6 +62,7 @@ class DefaultTextField extends StatefulWidget {
     this.keyboardType,
     this.focusNode,
     this.validator,
+    this.inputFormatters,
     super.key,
   });
 
@@ -115,6 +78,7 @@ class DefaultTextField extends StatefulWidget {
   final TextInputType? keyboardType;
   final FocusNode? focusNode;
   final String? Function(String?)? validator;
+  final List<TextInputFormatter>? inputFormatters;
 
   @override
   State<DefaultTextField> createState() => _DefaultTextFieldState();

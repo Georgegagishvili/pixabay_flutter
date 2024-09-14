@@ -9,6 +9,9 @@ class UserHive {
 
   Future<void> setInitialUsers() async {
     await Hive.openBox(_boxName);
+    final users = getUsers();
+    if (users.isNotEmpty) return;
+
     _box.put(_boxName, RegisteredUsers.mockUsers);
   }
 
@@ -51,15 +54,19 @@ class UserHive {
     return User.fromJson(userToken.parseJWT!);
   }
 
-  void saveUser(String token) {
+  String saveUser(String token) {
     final Box box = Hive.box(_boxName);
     final List<String> currentUsers =
         box.get(_boxName, defaultValue: <String>[]);
     currentUsers.add(token);
+    print(token);
+    print(currentUsers.length);
     box.put(
       _boxName,
-      currentUsers.toSet().toList(),
+      currentUsers.toList(),
     );
+
+    return token;
   }
 
   List<User> getUsers() {
