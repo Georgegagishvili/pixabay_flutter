@@ -55,6 +55,7 @@ class _LoginPageState extends State<LoginPage> with Validator {
                 autofocus: true,
                 // onChanged: _resetValidators,
                 textInputAction: TextInputAction.next,
+                keyboardType: TextInputType.emailAddress,
                 controller: _emailController,
               ),
               const SizedBox(height: 16),
