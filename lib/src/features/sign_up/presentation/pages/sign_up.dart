@@ -73,6 +73,7 @@ class _SignUpPageState extends State<SignUpPage> with Validator {
                   controller: _passwordController,
                   validator: validatePassword,
                   textInputAction: TextInputAction.next,
+                  maxLength: 12,
                   obscureText: true,
                 ),
                 const SizedBox(height: 16),
@@ -80,6 +81,7 @@ class _SignUpPageState extends State<SignUpPage> with Validator {
                   label: 'Confirm Password',
                   hint: 'Re-enter your password',
                   controller: _confirmPasswordController,
+                  maxLength: 12,
                   validator: (v) => validateConfirmPassword(
                     v,
                     _passwordController.text,

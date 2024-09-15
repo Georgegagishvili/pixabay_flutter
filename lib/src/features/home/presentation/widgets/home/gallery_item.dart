@@ -48,7 +48,9 @@ class _GalleryItemState extends State<GalleryItem> {
             : GestureDetector(
                 onTap: () {
                   HapticFeedback.selectionClick();
-                  context.push(ArtDetailedPage(art: widget.art!));
+                  context.push(
+                    ArtDetailedPage(art: widget.art!),
+                  );
                 },
                 child: AspectRatio(
                   aspectRatio: widget.art?.imageSize.aspectRatio ?? 1,
@@ -56,6 +58,8 @@ class _GalleryItemState extends State<GalleryItem> {
                     tag: widget.art!.id,
                     child: Stack(
                       children: [
+                        /// we have [widget.art.previewImage] for thumbnail,
+                        /// but i won't use it here as it doesn't fit the design
                         DefaultNetworkImage(
                           widget.art?.image ?? '',
                           fit: BoxFit.cover,
