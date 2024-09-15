@@ -13,10 +13,9 @@ class GalleryDetailedAppbar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final artWidth = art.imageSize.width;
-    final artHeight = art.imageSize.height;
-    final expandedHeight =
-        artHeight * MediaQuery.of(context).size.width / artWidth - 30;
+    final aspectRatio = art.imageSize.aspectRatio;
+    final expandedHeight = (MediaQuery.of(context).size.width / aspectRatio) -
+        MediaQuery.of(context).padding.top;
     return SliverAppBar(
       expandedHeight: expandedHeight,
       pinned: true,
