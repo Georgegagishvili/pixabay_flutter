@@ -23,6 +23,11 @@ class GalleryBloc extends Bloc<GalleryEvent, GalleryState> {
       _onGalleryRefreshed,
       transformer: throttleDroppable(debounceDuration),
     );
+
+    on<GallerySearch>(
+      _onGallerySearched,
+      transformer: throttleDroppable(debounceDuration),
+    );
   }
 
   final GalleryRepository galleryRepository;
@@ -38,6 +43,7 @@ class GalleryBloc extends Bloc<GalleryEvent, GalleryState> {
           status: GalleryStatus.success,
           arts: gallery?.data,
           hasReachedMax: false,
+          query: '',
         ),
       );
     } catch (_) {
@@ -77,6 +83,29 @@ class GalleryBloc extends Bloc<GalleryEvent, GalleryState> {
                 arts: List.of(state.arts)..addAll(data),
                 hasReachedMax: false,
               ),
+      );
+    } catch (_) {
+      emit(state.copyWith(status: GalleryStatus.failure));
+    }
+  }
+
+  Future<void> _onGallerySearched(
+      GallerySearch event, Emitter<GalleryState> emit) async {
+    try {
+      emit(state.copyWith(status: GalleryStatus.initial));
+
+      final gallery = await galleryRepository.fetchGallery(
+        payload: GalleryPayload(
+          query: event.query,
+        ),
+      );
+      emit(
+        state.copyWith(
+          status: GalleryStatus.success,
+          arts: gallery?.data,
+          hasReachedMax: false,
+          query: event.query,
+        ),
       );
     } catch (_) {
       emit(state.copyWith(status: GalleryStatus.failure));

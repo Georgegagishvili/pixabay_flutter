@@ -5,10 +5,10 @@ class ApiResource<T> {
   final T? data;
   final String? message;
 
-  ApiResource._({required this.status, this.data, this.message});
+  const ApiResource._({required this.status, this.data, this.message});
 
   factory ApiResource.initial() {
-    return ApiResource._(
+    return const ApiResource._(
       status: ApiStatus.initial,
     );
   }
@@ -20,12 +20,9 @@ class ApiResource<T> {
     );
   }
 
-  factory ApiResource.loading({
-    T? data,
-  }) {
-    return ApiResource._(
+  factory ApiResource.loading() {
+    return const ApiResource._(
       status: ApiStatus.loading,
-      data: data,
     );
   }
 

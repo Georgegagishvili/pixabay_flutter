@@ -99,16 +99,17 @@ class LoadingPageState extends State<LoadingPage> {
                   context.theme.primary,
                   BlendMode.srcIn,
                 ),
-                child: Image.network(
-                  'https://i.imgur.com/IWvwaJz.png',
-                  width: 196,
+                child: Image.asset(
+                  PngAsset.logo,
+                  width: MediaQuery.of(context).size.width / 3,
                   fit: BoxFit.cover,
                 ),
               ),
             ),
           ),
+          const SizedBox(height: 40),
           SizedBox(
-            width: 200,
+            width: MediaQuery.of(context).size.width / 2,
             height: 4,
             child: LinearProgressIndicator(
               backgroundColor: context.theme.surfaceVariant,

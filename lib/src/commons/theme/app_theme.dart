@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mvvm/src/commons/exports.dart';
 
 class AppTheme {
-  static const _fontLato = 'Lato';
-
+  /// for multiple color schemes per theme
   static InputDecorationTheme _inputDecorationTheme(CustomColors colors) {
     return InputDecorationTheme(
       enabledBorder: OutlineInputBorder(
@@ -54,7 +53,6 @@ class AppTheme {
     return ThemeData(
       scaffoldBackgroundColor: colors.background,
       brightness: Brightness.light,
-      fontFamily: _fontLato,
       extensions: [colors],
       colorScheme: ColorScheme.light(
         brightness: Brightness.light,
@@ -102,7 +100,6 @@ class AppTheme {
   static ThemeData appDarkTheme(CustomColors colors) {
     return ThemeData(
       scaffoldBackgroundColor: colors.background,
-      fontFamily: _fontLato,
       brightness: Brightness.dark,
       colorScheme: ColorScheme.dark(
         brightness: Brightness.dark,

@@ -10,6 +10,7 @@ export 'package:mvvm/src/util/extensions/navigation.dart';
 export 'package:mvvm/src/util/extensions/string.dart';
 export 'package:mvvm/src/util/extensions/theme.dart';
 
+export 'package:mvvm/src/util/helpers/asset_helper.dart';
 export 'package:mvvm/src/util/helpers/user_hive.dart';
 export 'package:mvvm/src/util/helpers/validator.dart';
 

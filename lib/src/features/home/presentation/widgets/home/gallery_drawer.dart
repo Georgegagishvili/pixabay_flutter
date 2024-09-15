@@ -83,7 +83,15 @@ class GalleryDrawer extends StatelessWidget {
               style: AppTextStyles.fourteenW400,
             ),
             leading: const Icon(Icons.search),
-            onTap: () {},
+            onTap: () {
+              Navigator.of(context).pop();
+              showDialog(
+                context: context,
+                builder: (context) {
+                  return const GallerySearchDialog();
+                },
+              );
+            },
           ),
           ListTile(
             title: const Text(

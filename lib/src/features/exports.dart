@@ -38,6 +38,7 @@ export 'package:mvvm/src/features/home/presentation/widgets/home/gallery_item.da
 export 'package:mvvm/src/features/home/presentation/widgets/home/gallery_item_placeholder.dart';
 export 'package:mvvm/src/features/home/presentation/widgets/home/gallery_list.dart';
 export 'package:mvvm/src/features/home/presentation/widgets/home/gallery_list_loader.dart';
+export 'package:mvvm/src/features/home/presentation/widgets/home/gallery_search_dialog.dart';
 
 export 'package:mvvm/src/features/sign_up/data/repository/register_repository_impl.dart';
 
