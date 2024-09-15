@@ -28,15 +28,17 @@ class MyApp extends StatelessWidget {
           create: (_) => ThemeCubit(),
         ),
       ],
-      child: BlocBuilder<ThemeCubit, ThemeMode>(builder: (context, state) {
-        return MaterialApp(
-          title: 'Flutter Assignment',
-          theme: AppTheme.appLightTheme(lightColors),
-          darkTheme: AppTheme.appDarkTheme(darkColors),
-          themeMode: state,
-          home: const LoadingPage(),
-        );
-      }),
+      child: BlocBuilder<ThemeCubit, ThemeMode>(
+        builder: (context, state) {
+          return MaterialApp(
+            title: 'Pixabay Gallery',
+            theme: AppTheme.appLightTheme(lightColors),
+            darkTheme: AppTheme.appDarkTheme(darkColors),
+            themeMode: state,
+            home: const LoadingPage(),
+          );
+        },
+      ),
     );
   }
 }
