@@ -5,7 +5,13 @@ import 'package:mvvm/src/util/exports.dart';
 class LoginCubit extends Cubit<ApiResource<String>> {
   final LoginRepository loginRepository;
 
-  LoginCubit({required this.loginRepository}) : super(ApiResource.initial());
+  LoginCubit({required this.loginRepository}) : super(ApiResource.initial()) {
+    final String? token =
+        Preferences.instance.getString(PreferenceKeys.USER_TOKEN);
+    if (token != null) {
+      emit(ApiResource.success(token));
+    }
+  }
 
   Future<ApiResource<String>> login(LoginPayload payload) async {
     emit(ApiResource.loading());

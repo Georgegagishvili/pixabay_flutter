@@ -65,6 +65,15 @@ class LoadingPageState extends State<LoadingPage> {
   }
 
   Future<void> _navigateToHome() async {
+    final bool isAuthorized =
+        Preferences.instance.getString(PreferenceKeys.USER_TOKEN) != null;
+    if (isAuthorized) {
+      context.pushReplacement(
+        const HomePage(),
+      );
+
+      return;
+    }
     context.pushReplacement(
       const LoginPage(),
     );
