@@ -11,6 +11,8 @@ export 'package:mvvm/src/features/auth/presentation/blocs/login_cubit.dart';
 
 export 'package:mvvm/src/features/auth/presentation/pages/login_page.dart';
 
+export 'package:mvvm/src/features/auth/presentation/widgets/login_form.dart';
+
 export 'package:mvvm/src/features/home/data/repository/gallery_repository_impl.dart';
 
 export 'package:mvvm/src/features/home/domain/entity/art.dart';
@@ -49,4 +51,6 @@ export 'package:mvvm/src/features/sign_up/domain/repository/register_repository.
 export 'package:mvvm/src/features/sign_up/presentation/blocs/register_cubit.dart';
 
 export 'package:mvvm/src/features/sign_up/presentation/pages/sign_up.dart';
+
+export 'package:mvvm/src/features/sign_up/presentation/widgets/sign_up_form.dart';
 
