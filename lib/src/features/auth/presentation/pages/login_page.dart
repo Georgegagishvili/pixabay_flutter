@@ -35,8 +35,8 @@ class _LoginPageState extends State<LoginPage> with Validator {
                   context.theme.primary,
                   BlendMode.srcIn,
                 ),
-                child: Image.network(
-                  'https://i.imgur.com/ONsT7xf.png',
+                child: Image.asset(
+                  PngAsset.logo,
                   width: 40,
                   alignment: Alignment.centerLeft,
                   fit: BoxFit.cover,

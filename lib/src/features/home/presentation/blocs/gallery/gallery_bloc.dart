@@ -58,6 +58,16 @@ class GalleryBloc extends Bloc<GalleryEvent, GalleryState> {
     try {
       if (state.status == GalleryStatus.initial) {
         final gallery = await galleryRepository.fetchGallery();
+        if (gallery?.message != null) {
+          return emit(
+            state.copyWith(
+              status: GalleryStatus.failure,
+              arts: [],
+              hasReachedMax: false,
+            ),
+          );
+        }
+
         return emit(
           state.copyWith(
             status: GalleryStatus.success,
