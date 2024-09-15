@@ -1,4 +1,6 @@
-class RegisterPayload {
+import 'package:equatable/equatable.dart';
+
+class RegisterPayload extends Equatable {
   final String email;
   final String password;
   final String fullName;
@@ -10,25 +12,6 @@ class RegisterPayload {
     required this.fullName,
     required this.age,
   });
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) return true;
-
-    return other is RegisterPayload &&
-        other.email == email &&
-        other.password == password &&
-        other.fullName == fullName &&
-        other.age == age;
-  }
-
-  @override
-  int get hashCode {
-    return email.hashCode ^
-        password.hashCode ^
-        fullName.hashCode ^
-        age.hashCode;
-  }
 
   @override
   String toString() {
@@ -57,4 +40,7 @@ class RegisterPayload {
       'age': age,
     };
   }
+
+  @override
+  List<Object?> get props => [email, password, fullName, age];
 }

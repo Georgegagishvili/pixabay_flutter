@@ -1,4 +1,6 @@
-class LoginPayload {
+import 'package:equatable/equatable.dart';
+
+class LoginPayload extends Equatable {
   final String? username;
   final String? password;
 
@@ -27,16 +29,5 @@ class LoginPayload {
   }
 
   @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) return true;
-
-    return other is LoginPayload &&
-        other.username == username &&
-        other.password == password;
-  }
-
-  @override
-  int get hashCode {
-    return username.hashCode ^ password.hashCode;
-  }
+  List<Object?> get props => [username, password];
 }

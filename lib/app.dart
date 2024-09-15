@@ -12,10 +12,17 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider<LoginCubit>(
-          create: (_) => LoginCubit(loginRepository: locator<LoginRepository>()),
+          create: (_) =>
+              LoginCubit(loginRepository: locator<LoginRepository>()),
         ),
         BlocProvider<RegisterCubit>(
-          create: (_) => RegisterCubit(registerRepository: locator<RegisterRepository>()),
+          create: (_) =>
+              RegisterCubit(registerRepository: locator<RegisterRepository>()),
+        ),
+        BlocProvider<GalleryBloc>(
+          create: (_) =>
+              GalleryBloc(galleryRepository: locator<GalleryRepository>())
+                ..add(GalleryFetched()),
         ),
       ],
       child: MaterialApp(

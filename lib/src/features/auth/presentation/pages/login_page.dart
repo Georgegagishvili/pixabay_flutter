@@ -121,7 +121,7 @@ class _LoginPageState extends State<LoginPage> with Validator {
       }
       if (loginResult.data == null) return;
 
-      context.push(
+      context.pushAndRemoveUntil(
         const HomePage(),
       );
     }

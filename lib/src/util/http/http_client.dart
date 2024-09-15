@@ -19,6 +19,7 @@ class HttpService {
       ),
     );
     _client.interceptors.add(LoggingInterceptor());
+    _client.interceptors.add(QueryApiKeyInterceptor(Constants.API_KEY));
   }
 
   static HttpService get instance => _instance;
@@ -28,8 +29,9 @@ class HttpService {
       };
 
   Map<String, String> get userHeader => {
-    'Authorization': Preferences.instance.getString(PreferenceKeys.USER_TOKEN) ?? '',
-  };
+        'Authorization':
+            Preferences.instance.getString(PreferenceKeys.USER_TOKEN) ?? '',
+      };
 
   Future<Response> get(
     String path, {

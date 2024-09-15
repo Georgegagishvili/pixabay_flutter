@@ -4,10 +4,12 @@ import 'package:mvvm/src/commons/exports.dart';
 class DefaultAppBar extends StatelessWidget implements PreferredSizeWidget {
   const DefaultAppBar({
     this.title,
+    this.color,
     super.key,
   });
 
   final String? title;
+  final Color? color;
 
   @override
   Widget build(BuildContext context) {
@@ -16,6 +18,7 @@ class DefaultAppBar extends StatelessWidget implements PreferredSizeWidget {
         title ?? '',
         style: AppTextStyles.eighteenW700,
       ),
+      backgroundColor: color,
       centerTitle: true,
     );
   }

@@ -59,8 +59,6 @@ class UserHive {
     final List<String> currentUsers =
         box.get(_boxName, defaultValue: <String>[]);
     currentUsers.add(token);
-    print(token);
-    print(currentUsers.length);
     box.put(
       _boxName,
       currentUsers.toList(),

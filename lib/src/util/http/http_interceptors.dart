@@ -42,3 +42,19 @@ class LoggingInterceptor extends Interceptor {
     handler.next(err);
   }
 }
+
+
+class QueryApiKeyInterceptor extends Interceptor {
+  final String apiKey;
+
+  QueryApiKeyInterceptor(this.apiKey);
+
+  @override
+  void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
+    options.queryParameters = {
+      ...options.queryParameters,
+      'key': apiKey,
+    };
+    handler.next(options);
+  }
+}

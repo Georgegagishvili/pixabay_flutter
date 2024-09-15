@@ -10,6 +10,8 @@ export 'package:mvvm/src/commons/widgets/app_bars/default_appbar.dart';
 
 export 'package:mvvm/src/commons/widgets/buttons/default_button.dart';
 
+export 'package:mvvm/src/commons/widgets/images/default_network_image.dart';
+
 export 'package:mvvm/src/commons/widgets/textfields/date_textfield.dart';
 export 'package:mvvm/src/commons/widgets/textfields/default_textfield.dart';
 
