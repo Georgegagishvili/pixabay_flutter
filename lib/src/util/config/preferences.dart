@@ -71,4 +71,5 @@ class Preferences {
 
 class PreferenceKeys{
   static const String USER_TOKEN = 'userToken';
+  static const String IS_DARK_MODE = 'isDarkMode';
 }

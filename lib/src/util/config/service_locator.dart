@@ -25,4 +25,6 @@ void setupServiceLocator() {
   locator.registerFactory(
     () => GalleryBloc(galleryRepository: locator<GalleryRepository>()),
   );
+
+  locator.registerLazySingleton<ThemeCubit>(() => ThemeCubit());
 }

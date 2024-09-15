@@ -18,9 +18,11 @@ export 'package:mvvm/src/features/home/domain/entity/gallery_payload.dart';
 
 export 'package:mvvm/src/features/home/domain/repository/gallery_repository.dart';
 
-export 'package:mvvm/src/features/home/presentation/blocs/gallery_bloc.dart';
-export 'package:mvvm/src/features/home/presentation/blocs/gallery_event.dart';
-export 'package:mvvm/src/features/home/presentation/blocs/gallery_state.dart';
+export 'package:mvvm/src/features/home/presentation/blocs/gallery/gallery_bloc.dart';
+export 'package:mvvm/src/features/home/presentation/blocs/gallery/gallery_event.dart';
+export 'package:mvvm/src/features/home/presentation/blocs/gallery/gallery_state.dart';
+
+export 'package:mvvm/src/features/home/presentation/blocs/theme/theme_cubit.dart';
 
 export 'package:mvvm/src/features/home/presentation/pages/art_detailed_page.dart';
 export 'package:mvvm/src/features/home/presentation/pages/home_page.dart';

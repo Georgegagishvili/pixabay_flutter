@@ -22,66 +22,69 @@ class GalleryDetailedAppbar extends StatelessWidget {
       pinned: true,
       scrolledUnderElevation: 0,
       flexibleSpace: FlexibleSpaceBar(
-        background: Stack(
-          children: [
-            Hero(
-              tag: art.id,
-              child: DefaultNetworkImage(
-                art.image,
-                fit: BoxFit.cover,
-              ),
-            ),
-            Positioned(
-              left: 0,
-              right: 0,
-              bottom: 0,
-              child: Container(
-                height: 45,
-                alignment: Alignment.bottomLeft,
-                padding: const EdgeInsets.only(
-                  left: 8,
-                  right: 8,
-                  bottom: 8,
+        background: Hero(
+          tag: art.id,
+          child: Material(
+            child: Stack(
+              children: [
+                DefaultNetworkImage(
+                  art.image,
+                  fit: BoxFit.cover,
                 ),
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.bottomCenter,
-                    end: Alignment.topCenter,
-                    colors: [
-                      context.theme.background.withOpacity(0.9),
-                      context.theme.background.withOpacity(0),
-                    ],
-                  ),
-                ),
-                child: Row(
-                  children: [
-                    Text(
-                      '${art.imageType} • ${art.imageSize.width.toInt()} x ${art.imageSize.height.toInt()}',
-                      textAlign: TextAlign.left,
-                      style: AppTextStyles.twelveW400.copyWith(
-                        color: context.theme.inverseSurface,
+                Positioned(
+                  left: 0,
+                  right: 0,
+                  bottom: 0,
+                  child: Container(
+                    height: 45,
+                    alignment: Alignment.bottomLeft,
+                    padding: const EdgeInsets.only(
+                      left: 8,
+                      right: 8,
+                      bottom: 8,
+                    ),
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        begin: Alignment.bottomCenter,
+                        end: Alignment.topCenter,
+                        colors: [
+                          context.theme.background.withOpacity(0.9),
+                          context.theme.background.withOpacity(0),
+                        ],
                       ),
                     ),
-                    const Spacer(),
-                    _IconText(
-                      icon: Icons.thumb_up_outlined,
-                      text: '${art.likes}',
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: Text(
+                            '${art.imageType} • ${art.imageSize.width.toInt()} x ${art.imageSize.height.toInt()}',
+                            textAlign: TextAlign.left,
+                            style: AppTextStyles.twelveW400.copyWith(
+                              color: context.theme.inverseSurface,
+                            ),
+                          ),
+                        ),
+                        _IconText(
+                          icon: Icons.thumb_up_outlined,
+                          text: '${art.likes}',
+                        ),
+                        const SizedBox(width: 4),
+                        _IconText(
+                          icon: Icons.comment_outlined,
+                          text: '${art.commentsAmount}',
+                        ),
+                        const SizedBox(width: 4),
+                        _IconText(
+                          icon: Icons.favorite_border_rounded,
+                          text: '${art.favorites}',
+                        ),
+                      ],
                     ),
-                    const SizedBox(width: 4),
-                    _IconText(
-                      icon: Icons.comment_outlined,
-                      text: '${art.commentsAmount}',
-                    ),
-                    const SizedBox(width: 4),
-                    _IconText(
-                      icon: Icons.favorite_border_rounded,
-                      text: '${art.favorites}',
-                    ),
-                  ],
+                  ),
                 ),
-              ),
+              ],
             ),
-          ],
+          ),
         ),
       ),
     );

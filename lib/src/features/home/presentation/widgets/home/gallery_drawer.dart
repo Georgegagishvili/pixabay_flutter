@@ -14,27 +14,72 @@ class GalleryDrawer extends StatelessWidget {
         children: <Widget>[
           SizedBox(
             width: double.infinity,
-            child: DrawerHeader(
-              decoration: BoxDecoration(
-                color: context.theme.surfaceVariant,
-              ),
-              child: const Text(
-                'Settings',
-                style: AppTextStyles.eighteenW700,
-              ),
+            child: BlocBuilder<LoginCubit, ApiResource<String>>(
+              builder: (context, state) {
+                if (state.data == null) {
+                  return const SizedBox();
+                }
+
+                final user = User.fromJson(state.data!.parseJWT!);
+
+                return DrawerHeader(
+                  decoration: BoxDecoration(
+                    color: context.theme.surfaceVariant,
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const DefaultNetworkImage(
+                        'https://i.imgur.com/ONsT7xf.png',
+                        width: 50,
+                        height: 50,
+                        borderRadius: 100,
+                        alignment: Alignment.centerLeft,
+                        fit: BoxFit.cover,
+                      ),
+                      const SizedBox(height: 16),
+                      Text(
+                        user.fullName,
+                        style: AppTextStyles.sixteenW700.copyWith(
+                          color: context.theme.primary,
+                        ),
+                      ),
+                      Text(
+                        user.email,
+                        style: AppTextStyles.fourteenW400,
+                      ),
+                    ],
+                  ),
+                );
+              },
             ),
+          ),
+          BlocBuilder<ThemeCubit, ThemeMode>(
+            builder: (context, state) {
+              return ListTile(
+                title: const Text(
+                  'Switch theme',
+                  style: AppTextStyles.fourteenW400,
+                ),
+                leading: Builder(
+                  builder: (context) {
+                    if (state == ThemeMode.dark) {
+                      return const Icon(Icons.light_mode);
+                    } else {
+                      return const Icon(Icons.dark_mode);
+                    }
+                  },
+                ),
+                onTap: () {
+                  context.read<ThemeCubit>().switchTheme();
+                  Navigator.of(context).pop();
+                },
+              );
+            },
           ),
           ListTile(
             title: const Text(
-              'Switch Theme',
-              style: AppTextStyles.fourteenW400,
-            ),
-            leading: const Icon(Icons.dark_mode_outlined),
-            onTap: () {},
-          ),
-          ListTile(
-            title: const Text(
-              'Find Images',
+              'Find images',
               style: AppTextStyles.fourteenW400,
             ),
             leading: const Icon(Icons.search),
@@ -42,7 +87,7 @@ class GalleryDrawer extends StatelessWidget {
           ),
           ListTile(
             title: const Text(
-              'Refresh Page',
+              'Refresh page',
               style: AppTextStyles.fourteenW400,
             ),
             leading: const Icon(Icons.refresh),
@@ -54,11 +99,14 @@ class GalleryDrawer extends StatelessWidget {
           const Spacer(),
           ListTile(
             title: const Text(
-              'Logout',
+              'Log out',
               style: AppTextStyles.fourteenW400,
             ),
             leading: const Icon(Icons.logout),
-            onTap: () {},
+            onTap: () {
+              context.read<LoginCubit>().logout();
+              context.pushAndRemoveUntil(const LoginPage());
+            },
           ),
         ],
       ),

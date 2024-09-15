@@ -29,5 +29,6 @@ class LoginCubit extends Cubit<ApiResource<String>> {
 
   Future<void> logout() async {
     Preferences.instance.removeKey(PreferenceKeys.USER_TOKEN);
+    emit(ApiResource.initial());
   }
 }

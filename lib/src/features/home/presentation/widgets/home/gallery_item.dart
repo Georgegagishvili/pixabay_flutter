@@ -52,47 +52,50 @@ class _GalleryItemState extends State<GalleryItem> {
                 },
                 child: AspectRatio(
                   aspectRatio: widget.art?.imageSize.aspectRatio ?? 1,
-                  child: Stack(
-                    children: [
-                      Hero(
-                        tag: widget.art!.id,
-                        child: DefaultNetworkImage(
+                  child: Hero(
+                    tag: widget.art!.id,
+                    child: Stack(
+                      children: [
+                        DefaultNetworkImage(
                           widget.art?.image ?? '',
                           fit: BoxFit.cover,
                           borderRadius: 8,
                         ),
-                      ),
-                      Positioned(
-                        left: 0,
-                        right: 0,
-                        bottom: 0,
-                        child: Container(
-                          padding: const EdgeInsets.only(
-                            top: 8,
-                            bottom: 4,
-                            left: 4,
-                            right: 4,
-                          ),
-                          decoration: BoxDecoration(
-                            gradient: LinearGradient(
-                              begin: Alignment.bottomCenter,
-                              end: Alignment.topCenter,
-                              colors: [
-                                context.theme.background.withOpacity(0.9),
-                                context.theme.background.withOpacity(0),
-                              ],
+                        Positioned(
+                          left: 0,
+                          right: 0,
+                          bottom: 0,
+                          child: Container(
+                            padding: const EdgeInsets.only(
+                              top: 8,
+                              bottom: 4,
+                              left: 4,
+                              right: 4,
+                            ),
+                            decoration: BoxDecoration(
+                              gradient: LinearGradient(
+                                begin: Alignment.bottomCenter,
+                                end: Alignment.topCenter,
+                                colors: [
+                                  context.theme.background.withOpacity(0.9),
+                                  context.theme.background.withOpacity(0),
+                                ],
+                              ),
+                            ),
+                            child: DefaultTextStyle(
+                              style: AppTextStyles.twelveW400,
+                              child: Text(
+                                widget.art!.author,
+                                textAlign: TextAlign.center,
+                                style: AppTextStyles.twelveW400.copyWith(
+                                  color: context.theme.onSurfaceVariant,
+                                ),
+                              ),
                             ),
                           ),
-                          child: Text(
-                            widget.art!.author,
-                            textAlign: TextAlign.center,
-                            style: AppTextStyles.twelveW400.copyWith(
-                              color: context.theme.onSurfaceVariant,
-                            ),
-                          ),
-                        ),
-                      )
-                    ],
+                        )
+                      ],
+                    ),
                   ),
                 ),
               ),

@@ -21,8 +21,14 @@ class DefaultNetworkImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Align(
+    return Container(
       alignment: alignment,
+      width: width,
+      height: height,
+      decoration: BoxDecoration(
+        color: context.theme.onSurfaceVariant,
+        borderRadius: BorderRadius.circular(borderRadius ?? 0),
+      ),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(borderRadius ?? 0),
         child: Image.network(

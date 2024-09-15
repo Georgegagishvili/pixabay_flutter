@@ -99,7 +99,7 @@ class AppTheme {
   }
 
   /// If you consider theming application
-  static ThemeData darkTheme(CustomColors colors) {
+  static ThemeData appDarkTheme(CustomColors colors) {
     return ThemeData(
       scaffoldBackgroundColor: colors.background,
       fontFamily: _fontLato,

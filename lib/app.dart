@@ -24,14 +24,19 @@ class MyApp extends StatelessWidget {
               GalleryBloc(galleryRepository: locator<GalleryRepository>())
                 ..add(GalleryFetched()),
         ),
+        BlocProvider<ThemeCubit>(
+          create: (_) => ThemeCubit(),
+        ),
       ],
-      child: MaterialApp(
-        title: 'Flutter Assignment',
-        theme: AppTheme.appLightTheme(lightColors),
-        darkTheme: AppTheme.darkTheme(darkColors),
-        themeMode: ThemeMode.dark,
-        home: const LoadingPage(),
-      ),
+      child: BlocBuilder<ThemeCubit, ThemeMode>(builder: (context, state) {
+        return MaterialApp(
+          title: 'Flutter Assignment',
+          theme: AppTheme.appLightTheme(lightColors),
+          darkTheme: AppTheme.appDarkTheme(darkColors),
+          themeMode: state,
+          home: const LoadingPage(),
+        );
+      }),
     );
   }
 }
