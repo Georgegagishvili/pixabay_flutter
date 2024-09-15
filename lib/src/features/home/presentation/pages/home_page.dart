@@ -24,7 +24,7 @@ class HomePage extends StatelessWidget {
               }
 
               return const GalleryList();
-            default:
+            case GalleryStatus.initial:
               return const GalleryListLoader();
           }
         },

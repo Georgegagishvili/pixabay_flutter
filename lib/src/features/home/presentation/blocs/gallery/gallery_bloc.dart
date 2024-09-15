@@ -81,6 +81,7 @@ class GalleryBloc extends Bloc<GalleryEvent, GalleryState> {
         payload: GalleryPayload(
           page: state.arts.length ~/ _galleryLimit,
           perPage: _galleryLimit,
+          query: state.query,
         ),
       );
       final data = gallery?.data ?? [];

@@ -39,7 +39,7 @@ class _GalleryListState extends State<GalleryList> {
             crossAxisSpacing: 16,
             mainAxisSpacing: 16,
             itemCount:
-                state.hasReachedMax ? state.arts.length : state.arts.length + 6,
+                state.hasReachedMax ? state.arts.length : state.arts.length + 2,
             controller: _scrollController,
             padding: defaultAllPadding,
             itemBuilder: (context, index) {
