@@ -79,7 +79,7 @@ class GalleryBloc extends Bloc<GalleryEvent, GalleryState> {
 
       final gallery = await galleryRepository.fetchGallery(
         payload: GalleryPayload(
-          page: state.arts.length ~/ _galleryLimit,
+          page: state.arts.length ~/ _galleryLimit + 1,
           perPage: _galleryLimit,
           query: state.query,
         ),

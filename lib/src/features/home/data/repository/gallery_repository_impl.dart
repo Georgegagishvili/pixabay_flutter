@@ -15,6 +15,8 @@ class GalleryRepositoryImpl implements GalleryRepository {
         queryParameters: {
           'q': payload?.query ?? 'cat',
           'image_type': payload?.imageType.name ?? ImageType.photo.name,
+          'page': '${payload?.page ?? 1}',
+          'per_page': '${payload?.perPage ?? 20}',
         },
       );
 
